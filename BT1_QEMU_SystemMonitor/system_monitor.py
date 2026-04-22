@@ -30,11 +30,14 @@ try:
 
         # Lấy thời gian hiện tại và tạo chuỗi thông tin (Cập nhật Bước 7: thêm {status})
         now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        line = f'[{now}] CPU: {cpu_avg:.1f}% | RAM: {ram_used_mb}/{ram_total_mb} MB ({ram_pct}%) | Disk: {disk_pct}% | {status}'
-        
+        line = (
+            f"[{now}] CPU: {cpu_avg:.1f}% | "
+            f"RAM: {ram_used_mb}/{ram_total_mb} MB ({ram_pct}%) | "
+            f"Disk: {disk_pct}% | {status}"
+        )
+
         # In ra terminal
         print(line)
-        
         # BƯỚC 7: In thêm dòng cảnh báo nổi bật nếu CPU vượt mức NORMAL
         if status != 'NORMAL':
             print(f'  ⚠ {status}: CPU đang ở {cpu_avg:.1f}%')
@@ -49,7 +52,6 @@ try:
 # BƯỚC 6: Xử lý ngắt chương trình khi bấm Ctrl + C
 except KeyboardInterrupt:
     print('\nDừng giám sát.')
-    
 # BƯỚC 6: Đóng file an toàn
 finally:
     log_file.close()
